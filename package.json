@@ -1,0 +1,24 @@
+{
+  "name": "plataforma-poesia",
+  "version": "1.0.0",
+  "description": "Plataforma de poesias",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaoalber/plataforma-poesia.git"
+  },
+  "author": "João Alberto",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "knex": "^0.19.3",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
