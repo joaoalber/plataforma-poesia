@@ -1,5 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+div > h1 {
+    font-size: 70px;
+}
+
 body {
-    display: flex;
     background: url(background.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -8,14 +17,14 @@ body {
 }
 
 .botao {
-    margin-top: 50px;
+
+    margin-top: 30%;
     text-align: center;
 }
 
+
 .titulo {
-    padding-top: 110px;
-    font-size: 75px;
-    display: flex;
+    margin-top: 10%;
     flex-direction: column;
     text-align: center;
     color: #fff;
