@@ -8,5 +8,15 @@ body {
 }
 
 .botao {
+    margin-top: 50px;
     text-align: center;
 }
+
+.titulo {
+    padding-top: 110px;
+    font-size: 75px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: #fff;
+ }
