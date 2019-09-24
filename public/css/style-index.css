@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+div > h1 {
+    font-size: 70px;
+}
+
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.356), rgba(0, 0, 0, 0.356)), url(background.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;   
+
+}
+
+.botao {
+
+    margin-top: 20%;
+    text-align: center;
+}
+
+
+.titulo {
+    margin-top: 10%;
+    flex-direction: column;
+    text-align: center;
+    color: #fff;
+ }
