@@ -8,16 +8,6 @@ const app = express();
 
 app.use(express.static(__dirname + '/public'));
 
-const knex = require('knex')({
-    client: 'mysql',
-    connection: {
-      host: '127.0.0.1',
-      user: 'root',
-      password: '',
-      database: 'database'
-    }
-});
-
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(morgan('dev'));
 

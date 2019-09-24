@@ -1,4 +1,9 @@
-var router = require('express').Router();
+const router = require('express').Router();
+const queries = require('../../db/queries');
+const bodyParser = require('body-parser');
+const express = require('express');
+const app = express();
+app.use(bodyParser.urlencoded({ extended: false }))
 
 router.get("/", (req, res) => {
     res.render("index");
@@ -6,6 +11,11 @@ router.get("/", (req, res) => {
 
 router.get("/create", (req, res) => {
     res.render("cadastro");
+});
+
+router.post("/create", (req, res) => {
+    queries.usuario.create(req.body);
+    return res.render('index.ejs');
 });
 
 module.exports = router;
