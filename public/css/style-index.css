@@ -13,12 +13,12 @@ body {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
+    background-size: cover;   
 }
 
 .botao {
 
-    margin-top: 30%;
+    margin-top: 20%;
     text-align: center;
 }
 
