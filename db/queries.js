@@ -7,12 +7,15 @@ module.exports = {
             sobrenome: usuario.sobrenome, senha: usuario.senha}).then(()=>{});
         },
         delete: function(id) {
-            knex('usuario').where('id', id).delete();
+            return knex('usuario').where('id', id).del().then(()=>{});
         },
         readAll: function() {
             return knex('usuario');
         },
         readOne: function(id) {
+            return knex('usuario').where('id', id);
+        },
+        update: function(id) {
             return knex('usuario').where('id', id);
         }
     }

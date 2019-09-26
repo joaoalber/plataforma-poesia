@@ -18,15 +18,25 @@ router.post("/create", (req, res) => {
     return res.render('index.ejs');
 });
 
-/*router.delete("/delete/{id}", (req, res) => {
-    queries.usuario.delete(id);
-    return res.render('index.ejs');
-});*/
+router.get("/delete/:id", (req, res) => {
+    return queries.usuario.delete(req.params.id);
+    //return res.render('index.ejs');
+})
 
 router.get("/show", (req, res) => {
     queries.usuario.readAll().then(usuario => {
-        res.json(usuario);
+        return res.json(usuario);
     });
 });
+
+router.get("/show/:id", (req, res) => {
+    queries.usuario.readOne(req.params.id).then(usuario => {
+        return res.json(usuario);
+    });
+});
+
+/*router.get('/edit/:id', (req,res) => {
+    queries.usuario.update(req.params.id).then
+});*/
 
 module.exports = router;
