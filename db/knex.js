@@ -1,11 +1,7 @@
-const knex = require('knex')({
-    client: 'mysql',
-    connection: {
-      host: '127.0.0.1',
-      user: 'root',
-      password: '',
-      database: 'knexdb'
-    }
-});
+const config = require('../knexfile');
+const knex = require('knex');
+const environment = 'development';
+const environmentConfig = config[environment];
+const connection = knex(environmentConfig);
 
-module.exports = knex;
+module.exports = connection;
