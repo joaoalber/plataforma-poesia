@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 router.get("/", (req, res) => {
     res.render("index");
-});  
+});
 
 router.get("/create", (req, res) => {
     res.render("cadastro");
@@ -35,7 +35,15 @@ router.get("/show/:id", (req, res) => {
     });
 });
 
-/*router.get('/edit/:id', (req,res) => {
+router.get("/login", (req, res) => {
+    return res.render('login');
+})
+
+/*router.post('/login', (req, res, next) => {
+    
+});
+
+router.get('/edit/:id', (req,res) => {
     queries.usuario.update(req.params.id).then
 });*/
 
