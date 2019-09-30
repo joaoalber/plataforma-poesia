@@ -10,11 +10,8 @@ const queries = require('../db/queries');
 module.exports = function (passport) {
     passport.use(new localStrategy({ usernameField: 'email', passwordField: 'senha' }, (email, senha, done) => {
 
-            queries.usuario.readAll().then(usuario => {
-                console.log(usuario);
-            });
-        
-        usuario.where('email', email).then((usuario) => {
+            
+        usuario.where('email', email).first().then((usuario) => {
             if (!usuario) {
                 return done(null, false, { message: "Esta conta não existe" });
             }
