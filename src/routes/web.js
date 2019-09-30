@@ -60,6 +60,7 @@ router.post("/login/auth", (req, res, next) => {
 });
 
 /*
+
 router.get('/edit/:id', (req,res) => {
     queries.usuario.update(req.params.id).then
 });*/
