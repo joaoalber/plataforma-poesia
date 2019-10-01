@@ -1,12 +1,11 @@
 const localStrategy = require('passport-local').Strategy
 const knex = require('../db/knex')
 const bcrypt = require('bcryptjs')
-const usuario = knex('usuario')
-
 
 module.exports = function (passport) {
-    passport.use(new localStrategy({ usernameField: 'email', passwordField: 'senha' }, (email, senha, done) => {
-        usuario.where('email', email).first().then((usuario) => {
+    passport.use(new localStrategy({ usernameField: 'email', passwordField: 'senha'}, (email, senha, done) => {
+        console.log(email);
+        knex('usuario').where('email', email).first().then((usuario) => {
             if (!usuario) {
                 return done(null, false, { message: "Esta conta não existe" });
             }
@@ -19,11 +18,13 @@ module.exports = function (passport) {
                     return done(null, false, { message: "Senha incorreta" })
                 }
             })
+        }).catch((e) => {
+            console.log(e);
         })
     }))
 
     passport.serializeUser((user, done) => {
-        done(null, user.id);
+        done(null, user.id);   
     })
 
     passport.deserializeUser((id, done) => {

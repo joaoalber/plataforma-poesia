@@ -20,17 +20,17 @@ router.get("/delete/:id", (req, res) => {
     //return res.render('index.ejs');
 })
 
-router.get("/show", (req, res) => {
+/*router.get("/show", (req, res) => {
     queries.usuario.readAll().then(usuario => {
         return res.json(usuario);
     });
-});
+});*/
 
-router.get("/show/:id", (req, res) => {
+/*router.get("/show/:id", (req, res) => {
     queries.usuario.readOne(req.params.id).then(usuario => {
         return res.json(usuario);
     });
-});
+});*/
 
 router.get("/login", (req, res) => {
     return res.render('login');
