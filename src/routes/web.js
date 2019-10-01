@@ -39,7 +39,9 @@ router.get("/login", (req, res) => {
 router.post("/login/auth", (req, res, next) => {
     passport.authenticate("local", {
         successRedirect: "/",
-        failureRedirect: "/login"
+        failureRedirect: "/login",
+        failureFlash: "Nome ou senha inválido", 
+        successFlash: "Bem vindo!"
     })(req, res, next);
 });
 

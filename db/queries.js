@@ -24,7 +24,7 @@ module.exports = {
         },
         update: function (id) {
             return knex('usuario').where('id', id);
-        },
+        }
     }
     
 
