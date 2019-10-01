@@ -1,22 +1,6 @@
 const router = require('express').Router();
 const queries = require('../../db/queries');
-const bodyParser = require('body-parser');
-const express = require('express');
-const app = express();
 const passport = require('passport');
-const session = require('express-session');
-var flash = require('connect-flash');
-require('../../config/auth')(passport);
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.use(session({
-    secret: "plataformapoesia",
-    resave: true,
-    saveUninitialized: true
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(flash());
 
 router.get("/", (req, res) => {
     res.render("index");

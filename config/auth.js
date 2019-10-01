@@ -3,19 +3,16 @@ const knex = require('../db/knex')
 const bcrypt = require('bcryptjs')
 const usuario = knex('usuario')
 
-const queries = require('../db/queries');
-
-
 
 module.exports = function (passport) {
     passport.use(new localStrategy({ usernameField: 'email', passwordField: 'senha' }, (email, senha, done) => {
-
-            
         usuario.where('email', email).first().then((usuario) => {
             if (!usuario) {
                 return done(null, false, { message: "Esta conta não existe" });
             }
             bcrypt.compare(senha, usuario.senha, (erro, checked) => {
+                console.log(senha);
+                console.log(usuario.senha);
                 if (checked) {
                     return done(null, usuario);
                 } else {
