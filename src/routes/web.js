@@ -45,6 +45,10 @@ router.post("/login/auth", (req, res, next) => {
     })(req, res, next);
 });
 
+router.get("/usuario/:id", (req, res) => {
+    return res.render('profile');
+})
+
 /*
 
 router.get('/edit/:id', (req,res) => {
