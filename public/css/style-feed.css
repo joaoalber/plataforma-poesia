@@ -4,5 +4,9 @@
 }
 
 body {
-    background-color: #fff; 
+    background-color: #141d26; 
+}   
+
+.image {
+    background-image: url("profile.png");
 }
