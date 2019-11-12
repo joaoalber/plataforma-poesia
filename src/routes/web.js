@@ -16,29 +16,33 @@ router.post("/create", (req, res) => {
 });
 
 router.get("/delete/:id", (req, res) => {
-    return queries.usuario.delete(req.params.id);
-    //return res.render('index.ejs');
+    queries.usuario.delete(req.params.id);
+    return res.render('index.ejs');
 })
 
-/*router.get("/show", (req, res) => {
+router.get("/show", (req, res) => {
     queries.usuario.readAll().then(usuario => {
         return res.json(usuario);
     });
-});*/
+});
 
-/*router.get("/show/:id", (req, res) => {
+router.get("/show/:id", (req, res) => {
     queries.usuario.readOne(req.params.id).then(usuario => {
         return res.json(usuario);
     });
-});*/
+});
 
 router.get("/login", (req, res) => {
     return res.render('login');
 })
 
+router.get("/feed", (req, res) => {
+    return res.render('feed');
+})
+
 router.post("/login/auth", (req, res, next) => {
     passport.authenticate("local", {
-        successRedirect: "/",
+        successRedirect: "/feed",
         failureRedirect: "/login",
         failureFlash: "Nome ou senha inválido", 
         successFlash: "Bem vindo!"
@@ -49,10 +53,8 @@ router.get("/usuario/:id", (req, res) => {
     return res.render('profile');
 })
 
-/*
-
 router.get('/edit/:id', (req,res) => {
     queries.usuario.update(req.params.id).then
-});*/
+});
 
 module.exports = router;
