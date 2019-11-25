@@ -32,6 +32,27 @@ router.get("/show/:id", (req, res) => {
     });
 });
 
+
+router.get("/usuario/:id", (req, res) => {
+    return res.render('profile');
+})
+
+router.get('/edit/:id', (req,res) => {
+    queries.usuario.readOne(req.params.id).then(usuario => {
+        nome = usuario[0].nome;
+        email = usuario[0].email;
+        sobrenome = usuario[0].sobrenome;
+        return res.render('cadastro', {nome})
+    });
+    
+});
+
+router.post('/edit/:id', (req, res) => {
+    queries.usuario.update(req.params.id, req.body);
+    return res.render('index.ejs');
+});
+
+
 router.get("/login", (req, res) => {
     return res.render('login');
 })
@@ -47,14 +68,6 @@ router.post("/login/auth", (req, res, next) => {
         failureFlash: "Nome ou senha inválido", 
         successFlash: "Bem vindo!"
     })(req, res, next);
-});
-
-router.get("/usuario/:id", (req, res) => {
-    return res.render('profile');
-})
-
-router.get('/edit/:id', (req,res) => {
-    queries.usuario.update(req.params.id).then
 });
 
 module.exports = router;

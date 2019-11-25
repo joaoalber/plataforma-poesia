@@ -22,8 +22,15 @@ module.exports = {
         readOne: function (id) {
             return knex('usuario').where('id', id);
         },
-        update: function (id) {
-            return knex('usuario').where('id', id);
+        update: function (id, usuario) {
+            encrypt(usuario.senha).then((senhaCriptografada) => {
+                return knex('usuario').where('id', id).update({
+                    nome: usuario.nome,
+                    email: usuario.email,
+                    sobrenome: usuario.sobrenome,
+                    senha: senhaCriptografada
+                })
+            });
         }
     }
     
