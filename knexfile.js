@@ -12,6 +12,7 @@ module.exports = {
 
 
   pool: {},
+
   migrations: {
     directory: __dirname + '/db/migrations',
     tableName: 'knex_migrations',
