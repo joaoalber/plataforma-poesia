@@ -11,9 +11,8 @@ router.get("/", (req, res) => {
 });
 
 router.get("/create", (req, res) => {
-    method = 'POST'
     action = '/create'
-    return res.render("cadastro",{method,action});
+    return res.render("cadastro",{action});
 });
 
 router.post("/create", (req, res) => {
@@ -49,15 +48,14 @@ router.get('/edit/:id', (req,res) => {
         email = usuario[0].email;
         sobrenome = usuario[0].sobrenome
         senha = usuario[0].senha
-        method = 'PUT'
-        action = '/edit/'
-        return res.render('cadastro', {nome, email, sobrenome, senha, method, action})
+        action = '/edit/' + req.params.id + '?_method=PUT'
+        return res.render('cadastro', {nome, email, sobrenome, senha, action})
     });
     
 });
 
-router.put('/edit/', (req, res) => {
-    console.log('cheguei aqui')
+router.put('/edit/:id', (req, res) => {
+    
     queries.usuario.update(req.params.id, req.body);
     return res.render('index')  
 });

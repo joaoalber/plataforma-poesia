@@ -6,8 +6,11 @@ const passport = require('passport');
 const session = require('express-session');
 var flash = require('connect-flash');
 const port = 3000;
+var methodOverride = require('method-override')
 
 const app = express();
+
+app.use(methodOverride('_method'))
 
 require('./config/auth')(passport);
 app.use(bodyParser.urlencoded({ extended: false }));
