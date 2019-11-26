@@ -47,7 +47,7 @@ router.get('/edit/:id', (req,res) => {
         nome = usuario[0].nome;
         email = usuario[0].email;
         sobrenome = usuario[0].sobrenome
-        senha = usuario[0].senha
+        senha = queries.usuario.senha(req.params.id);
         action = '/edit/' + req.params.id + '?_method=PUT'
         return res.render('cadastro', {nome, email, sobrenome, senha, action})
     });
