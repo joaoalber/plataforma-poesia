@@ -3,15 +3,17 @@ const queries = require('../../db/queries');
 const passport = require('passport');
 
 router.get('/forgot', function(req, res, next) {
-    res.render('forgot', { });
+    return res.render('forgot', { });
 })
 
 router.get("/", (req, res) => {
-    res.render("index");
+    return res.render("index");
 });
 
 router.get("/create", (req, res) => {
-    res.render("cadastro");
+    method = 'POST'
+    action = '/create'
+    return res.render("cadastro",{method,action});
 });
 
 router.post("/create", (req, res) => {
@@ -19,8 +21,8 @@ router.post("/create", (req, res) => {
     return res.render('index.ejs');
 });
 
-router.get("/delete/:id", (req, res) => {
-    queries.usuario.delete(req.params.id);
+router.delete("/delete/:id", (req, res) => {
+    queries.usuario.delete(req.params.id)
     return res.render('index.ejs');
 })
 
@@ -47,14 +49,17 @@ router.get('/edit/:id', (req,res) => {
         email = usuario[0].email;
         sobrenome = usuario[0].sobrenome
         senha = usuario[0].senha
-        return res.render('cadastro', {nome})
+        method = 'PUT'
+        action = '/edit/'
+        return res.render('cadastro', {nome, email, sobrenome, senha, method, action})
     });
     
 });
 
-router.post('/edit/:id', (req, res) => {
+router.put('/edit/', (req, res) => {
+    console.log('cheguei aqui')
     queries.usuario.update(req.params.id, req.body);
-    return res.render('index.ejs');
+    return res.render('index')  
 });
 
 router.post('/forgot', function(req, res, next) {

@@ -14,7 +14,9 @@ module.exports = {
             });
         },
         delete: function(id) {
-            return knex('usuario').where('id', id).del().then(() => { });
+            return knex('usuario').where('id', id).del().then(() => { 
+                message = 'success';
+            });
         },
         readAll: function() {
             return knex('usuario');
@@ -23,6 +25,7 @@ module.exports = {
             return knex('usuario').where('id', id);
         },
         update: function(id, usuario) {
+            console.log(usuario.nome)
             encrypt(usuario.senha).then((senhaCriptografada) => {
                 return knex('usuario').where('id', id).update({
                     nome: usuario.nome,

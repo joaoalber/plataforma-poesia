@@ -16,27 +16,27 @@
 
 
     <div class="container">
-        <form action="/create" method="POST" role="form">
+        <form action="<%=action%>" method="<%=method%>" role="form">
             <div class="row">
                 <div class="form col-md-7">
                     <div class="form-group">
                         <label for="nome">Nome</label>
-                        <input type="nome" class="form-control" name="nome" id="nome" placeholder="Nome" value= <%- nome %>>
+                        <input type="nome" class="form-control" name="nome" id="nome" placeholder="Nome" value = '<% if(locals.nome) { %><%=nome%><% }else{ %><% } %>'>
                     </div>
                     <div class="form-group">
                         <label for="sobrenome">Sobrenome</label>
-                        <input type="sobrenome" class="form-control" name="sobrenome" id="sobrenome" placeholder="Sobrenome"  value= <%- sobrenome %>>
+                        <input type="sobrenome" class="form-control" name="sobrenome" id="sobrenome" placeholder="Sobrenome" value= '<% if(locals.sobrenome) { %><%=sobrenome%><% }else{ %><% } %>'>
                     </div>
                     <div class="form-group">
                         <label for="email">E-mail</label>
                         <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Favor digite o seu e-mail" value= <%- email %>>
+                            placeholder="Favor digite o seu e-mail" value='<% if(locals.email) { %><%=email%><% }else{ %><% } %>'>
                         <small id="emailMsg" class="form-text text-muted">Não compartilharemos seu e-mail com
                             ninguém.</small>
                     </div>
                     <div class="form-group">
                         <label for="senha">Senha</label>
-                        <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" value= <%- senha %>>
+                        <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" value='<% if(locals.senha) { %><%=senha%><% }else{ %><% } %>'>
                     </div>
                     <button type="submit" style="margin-top:10px;" class="btn btn-primary">Enviar</button>
                 </div>
