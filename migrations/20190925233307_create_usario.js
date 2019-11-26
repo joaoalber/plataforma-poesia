@@ -3,7 +3,7 @@ exports.up = function (knex) {
       table.increments("id");
       table.string("nome").notNullable();
       table.string("sobrenome").notNullable();
-      table.unique("email").notNullable();
+      table.string("email").unique().notNullable();
       table.string("senha").notNullable();
       table.timestamps();
    }).then(() => {

@@ -58,16 +58,26 @@ router.post('/edit/:id', (req, res) => {
 });
 
 router.post('/forgot', function(req, res, next) {
-    queries.usuario.findUser(req.body.email).then((doc) => {
-      const newpass = 123456
+    queries.usuario.findUser(req.body.email).then((usuario) => {
+      const newpass = generatePassword()
       queries.usuario.changePassword(req.body.email, newpass)
-      require('../../mail')(req.body.email, 'Sua nova senha do chat', 'Olá ' + doc.nome + ', sua nova senha é ' + newpass)
+      require('../../mail')(req.body.email, 'Sua nova senha do chat', 'Olá ' + usuario[0].nome + ', sua nova senha é ' + newpass)
       res.redirect('/')
     }).catch(err => { 
         console.error(err)
         res.redirect('/')//manda pro login mesmo que não ache
     });
   });
+
+  function generatePassword() {
+    var length = 8,
+        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        retVal = "";
+    for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+    return retVal;
+}
 
 
 router.get("/login", (req, res) => {
