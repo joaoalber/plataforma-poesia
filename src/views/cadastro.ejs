@@ -10,34 +10,44 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/style-cadastro.css">
-</head>
-
-<body>
-
-
+    <script src="https://code.jquery.com/jquery-1.9.1.js"
+        integrity="sha256-e9gNBsAcA0DBuRWbm0oZfbiCyhjLrI6bmqAl5o+ZjUA=" crossorigin="anonymous"></script>
+    <script src=https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.js> </script> </head> <body>
     <div class="container">
-        <form action="<%=action%>" method="POST" role="form">
+        <form id="form-id" action="<%=action%>" method="POST" role="form">
+
             <div class="row">
                 <div class="form col-md-7">
                     <div class="form-group">
                         <label for="nome">Nome</label>
-                        <input type="nome" class="form-control" name="nome" id="nome" placeholder="Nome" value = '<% if(locals.nome) { %><%=nome%><% }else{ %><% } %>'>
+                        <input type="nome" class="form-control error" name="nome" id="nome" placeholder="Nome"
+                            value='<% if(locals.nome) { %><%=nome%><% }else{ %><% } %>' required>
                     </div>
                     <div class="form-group">
                         <label for="sobrenome">Sobrenome</label>
-                        <input type="sobrenome" class="form-control" name="sobrenome" id="sobrenome" placeholder="Sobrenome" value= '<% if(locals.sobrenome) { %><%=sobrenome%><% }else{ %><% } %>'>
+                        <input type="sobrenome" class="form-control error" name="sobrenome" id="sobrenome"
+                            placeholder="Sobrenome"
+                            value='<% if(locals.sobrenome) { %><%=sobrenome%><% }else{ %><% } %>' required>
                     </div>
                     <div class="form-group">
                         <label for="email">E-mail</label>
-                        <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Favor digite o seu e-mail" value='<% if(locals.email) { %><%=email%><% }else{ %><% } %>'>
+                        <input type="email" class="form-control error" name="email" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Favor digite o seu e-mail"
+                            value='<% if(locals.email) { %><%=email%><% }else{ %><% } %>' required>
                         <small id="emailMsg" class="form-text text-muted">Não compartilharemos seu e-mail com
                             ninguém.</small>
                     </div>
                     <div class="form-group">
                         <label for="senha">Senha</label>
-                        <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" value='<% if(locals.senha) { %><%=senha%><% }else{ %><% } %>'>
+                        <input type="password" class="form-control error" name="senha" id="senha" placeholder="Senha"
+                            value='<% if(locals.senha) { %><%=senha%><% }else{ %><% } %>' required>
                     </div>
+                    <div class="form-group">
+                            <label for="confirmar">Confirmar a senha</label>
+                            <input type="password" class="form-control error" name="confirmar" id="confirmar" placeholder="Confirmar senha"
+                                value='<% if(locals.senha) { %><%=senha%><% }else{ %><% } %>' required>
+                        </div>
+                    
                     <button type="submit" style="margin-top:10px;" class="btn btn-primary">Enviar</button>
                 </div>
 
@@ -46,13 +56,54 @@
                     <p>"&nbspRio do mistério<br>o que seria de mim<br>se me levassem a sério?&nbsp"<br><br>Paulo
                         Leminski</p>
                 </div>
-                
+
         </form>
-
+        <script>
+            $(document).ready(function () {
+                $("#form-id").validate({
+                    rules: {
+                        nome: {
+                            rangelength: [2, 20]
+                        },
+                        sobrenome: {
+                            rangelength: [2, 40]
+                        },
+                        confirmar: {
+                            equalTo: '#senha'
+                        }
+                    },
+                    messages: {
+                        nome: {
+                            required: "Campo obrigatório",
+                            rangelength: "Favor informar um nome entre 2 e 20 caracteres"
+                        },
+                        sobrenome: {
+                            required: "Campo obrigatório",
+                            rangelength: "Favor informar um nome entre 2 e 40 caracteres"
+                        },
+                        confirmar: {
+                            required: "Campo obrigatório",
+                            equalTo: "As senhas devem ser iguais"
+                        },
+                        email: {
+                            required: "Campo obrigatório"
+                        },
+                        senha: {
+                            required: "Campo obrigatório"
+                        },
+                        confirmar: {
+                            required: "Campo obrigatório"
+                        }
+                    },
+                    error: "invalid"
+                });
+            });
+        </script>
     </div>
 
     </div>
+    </body>
 
-</body>
+
 
 </html>
