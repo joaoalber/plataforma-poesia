@@ -1,15 +1,13 @@
 const knex = require('./knex');
 const bcrypt = require('bcrypt');
 var senhaDecriptada = [];
-var cont = 1;
 
 const encrypt = (dados) => {
     return bcrypt.hash(dados, 10);
 }
 
-const senhaDescriptografada = (senha, cont) => {
-    senhaDecriptada[cont] = senha;
-    cont++;
+const senhaDescriptografada = (senha, id) => {
+    senhaDecriptada[id] = senha;
 }
 
 module.exports = {
@@ -18,11 +16,12 @@ module.exports = {
             return senhaDecriptada[id]
         },
         create: function(usuario) {
-            console.log(usuario);
-            senhaDescriptografada(usuario.senha, cont);
+            var senha = usuario.senha
             encrypt(usuario.senha).then((senhaCriptografada) => {
                 return knex('usuario').insert({nome: usuario.nome, email: usuario.email,
-                    sobrenome: usuario.sobrenome, senha: senhaCriptografada});
+                    sobrenome: usuario.sobrenome, senha: senhaCriptografada}).then((id) => {
+                        senhaDescriptografada(senha, id);
+                    });
             });
         },
         delete: function(id) {
